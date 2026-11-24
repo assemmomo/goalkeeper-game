@@ -99,11 +99,43 @@ button{font-family:inherit}
 .help kbd{background:#ffffff22;border:1px solid #fff4;border-bottom-width:3px;border-radius:6px;padding:0 8px;font-family:inherit;font-weight:800}
 #bests{font-size:13px;opacity:.8;font-weight:600}
 #tip{position:fixed;bottom:12px;left:0;right:0;text-align:center;font-size:12px;opacity:.6;pointer-events:none}
+/* ===== الملف الشخصي، المتجر، الإنجازات، التعليم ===== */
+#prof{display:flex;align-items:center;gap:12px;background:var(--glass);border:1px solid var(--line);border-radius:40px;padding:6px 16px 6px 8px;font-weight:800;text-align:right}
+#prof .lv{width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#f7c948,#d9a520);color:#111;display:grid;place-items:center;font-size:18px;font-weight:900;flex:none}
+#prof .xp{width:150px;height:8px;border-radius:4px;background:#ffffff22;overflow:hidden;margin-top:3px}#prof .xp b{display:block;height:100%;background:linear-gradient(90deg,#9cff3b,#4fd1ff)}
+#prof small{display:block;font-size:11px;opacity:.75}
+.coin{color:var(--gold)}
+.modes{grid-template-columns:repeat(5,minmax(0,1fr));width:min(1100px,100%)}
+@media(max-width:980px){.modes{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:620px){.modes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.badge{display:inline-block;background:var(--red);color:#fff;font-size:11px;padding:0 8px;border-radius:10px;margin-right:6px;vertical-align:middle}
+#shopBody{width:min(680px,100%);display:grid;gap:10px}
+.up{display:flex;align-items:center;gap:12px;background:#ffffff0d;border:1px solid var(--line);border-radius:14px;padding:10px 14px;text-align:right}
+.up .ic{font-size:28px}.up h4{margin:0;font-size:16px}.up p{margin:2px 0 0;font-size:12px;opacity:.8;font-weight:600}
+.pips{display:flex;gap:4px;margin-top:5px}.pips i{width:18px;height:6px;border-radius:3px;background:#ffffff22}.pips i.on{background:var(--lime)}
+.up .ghost{margin-right:auto;white-space:nowrap}.ghost:disabled{opacity:.4;cursor:not-allowed}
+.swg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}@media(max-width:620px){.swg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sw{background:#ffffff0d;border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:800;font-size:13px;cursor:pointer;color:#fff}
+.sw.eq{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime) inset}.sw.lockd{opacity:.75}
+.sw .c{width:46px;height:46px;border-radius:50%;border:3px solid #fff3}
+#achGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(860px,100%)}@media(max-width:700px){#achGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ach{background:#ffffff0d;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:right;font-size:12.5px;font-weight:600}
+.ach.got{border-color:var(--gold);background:linear-gradient(180deg,rgba(247,201,72,.16),rgba(255,255,255,.03))}
+.ach:not(.got){opacity:.55}.ach b{display:block;font-size:14.5px;font-weight:900}.ach .r{color:var(--gold);font-weight:800}
+#toasts{position:fixed;top:calc(70px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;z-index:20}
+.toast{background:linear-gradient(90deg,#2a2208f2,#0d1b2ef2);border:1px solid var(--gold);border-radius:14px;padding:8px 18px;font-weight:800;box-shadow:0 8px 24px #000a;animation:tin .4s ease-out,tout .5s ease-in 3.4s forwards;white-space:nowrap;text-align:center}
+.toast small{display:block;font-size:12px;opacity:.85;font-weight:600}
+@keyframes tin{from{opacity:0;transform:translateY(-16px)}}@keyframes tout{to{opacity:0;transform:translateY(-16px)}}
+#tutBox{position:absolute;top:calc(62px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:#0d1b2ef0;border:1px solid #4fd1ff;border-radius:14px;padding:10px 18px;font-weight:800;font-size:clamp(13px,2.2vw,17px);width:max-content;max-width:min(620px,92vw);text-align:center;box-shadow:0 0 24px #4fd1ff44}
+#tutBox small{display:block;color:#7fd4ff;font-size:12px;margin-bottom:2px}
+#rewards{font-weight:900;font-size:20px}
+#load{position:fixed;inset:0;background:#050a08;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:50;transition:opacity .6s}
+#load .sp{width:46px;height:46px;border:4px solid #ffffff22;border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div id="hud" class="hide">
  <div id="board"><div id="sbMode">مسيرة</div><div id="sbMain">🧤 0 &nbsp;|&nbsp; ⚽ 0</div><div id="sbSub">1/8</div></div>
+ <div id="tutBox" class="hide"></div>
  <div id="topR"><div class="pill" id="pts">النقاط <b>0</b></div><div class="pill" id="combo">🔥 ×1</div></div>
  <div id="topL"><div class="pill" id="rate">⭐ 6.0</div><div class="pill" id="lvl" style="display:none"></div></div>
  <div id="focus"><small>⏱ تركيز <span id="fKey">[Space]</span></small><div class="segs"><div class="seg"><b></b></div><div class="seg"><b></b></div><div class="seg"><b></b></div></div></div>
@@ -118,19 +150,29 @@ button{font-family:inherit}
 <div id="rec"><i></i>إعادة<small>انقر للتخطي</small></div>
 <div id="bn"></div>
 <div id="ring"></div>
+<div id="toasts"></div>
+<div id="load"><div class="sp"></div><b>جارٍ تجهيز الملعب…</b></div>
 
 <div id="menu" class="scr on">
+ <div id="prof"></div>
  <div class="logo"><span class="gl">🧤</span><h1>حارس المرمى<b>PRO</b></h1><p>أنت الخط الأخير. اقرأ التسديدة… وارتمِ.</p></div>
  <div class="modes">
   <button class="card" data-mode="career"><i>🏆</i><h3>المسيرة الاحترافية</h3><p>5 بطولات بصعوبة متصاعدة. افتح البطولة التالية واجمع النجوم.</p></button>
   <button class="card" data-mode="survival"><i>❤️</i><h3>البقاء</h3><p>3 أرواح فقط. الصعوبة تزيد كل 5 تصديات. كم ستصمد؟</p></button>
   <button class="card" data-mode="shootout"><i>🎯</i><h3>ركلات الترجيح</h3><p>5 ركلات لكل فريق ثم الموت المفاجئ. البطولة بين يديك.</p></button>
   <button class="card" data-mode="training"><i>🏋️</i><h3>التدريب</h3><p>اختر نوع التسديدة بحرية، مع إظهار مسار الكرة للتعلم.</p></button>
+  <button class="card" data-mode="daily"><i>📅</i><h3>تحدي اليوم</h3><p id="dailyP">10 تسديدات صعبة ثابتة لهذا اليوم. حطّم رقمك القياسي.</p></button>
  </div>
  <div class="row"><span>الصعوبة:</span><div class="chips" id="diff"><button class="chip" data-v="0">سهل</button><button class="chip" data-v="1">متوسط</button><button class="chip" data-v="2">صعب</button><button class="chip" data-v="3">أسطوري</button></div></div>
- <div class="row"><button class="ghost" id="bSet">⚙️ الإعدادات</button><button class="ghost" id="bHelp">❔ طريقة اللعب</button></div>
+ <div class="row"><button class="ghost" id="bShop">🛒 المتجر</button><button class="ghost" id="bAch">🏅 الإنجازات</button><button class="ghost" id="bTut">🎓 الدرس التعليمي</button><button class="ghost" id="bSet">⚙️ الإعدادات</button><button class="ghost" id="bHelp">❔ طريقة اللعب</button></div>
  <div id="bests"></div>
 </div>
+
+<div id="shop" class="scr"><h2>🛒 المتجر</h2><div class="pill coin" id="shopCoins"></div>
+ <div class="chips" id="shopTabs"><button class="chip on" data-v="up">⚡ التطوير</button><button class="chip" data-v="gl">🧤 القفازات</button><button class="chip" data-v="kit">👕 الأطقم</button></div>
+ <div id="shopBody"></div><button class="ghost" data-back>→ رجوع</button></div>
+
+<div id="ach" class="scr"><h2>🏅 الإنجازات</h2><div id="achSum" style="font-weight:800"></div><div id="achGrid"></div><button class="ghost" data-back>→ رجوع</button></div>
 
 <div id="career" class="scr"><h2>🏆 المسيرة الاحترافية</h2><div id="stages"></div><button class="ghost" data-back>→ رجوع</button></div>
 
@@ -144,6 +186,8 @@ button{font-family:inherit}
   <div class="set"><span>اهتزاز الكاميرا</span><button class="tg" id="sShake"></button></div>
   <div class="set"><span>مساعدة التصدي</span><button class="tg" id="sAssist"></button></div>
   <div class="set"><span>إظهار مسار الكرة (التدريب)</span><button class="tg" id="sTrail"></button></div>
+  <div class="set"><span>الطقس</span><div class="chips" id="sWx"><button class="chip" data-v="clear">صافٍ</button><button class="chip" data-v="rain">ممطر</button><button class="chip" data-v="auto">عشوائي</button></div></div>
+  <div class="set"><span>المعلّق الصوتي <small id="voiceNote" style="opacity:.6"></small></span><button class="tg" id="sVoice"></button></div>
  </div>
  <button class="btn" data-back>تم</button></div>
 
@@ -155,13 +199,17 @@ button{font-family:inherit}
   ⏸ <kbd>Esc</kbd> أو <kbd>P</kbd>: إيقاف مؤقت &nbsp;•&nbsp; <kbd>R</kbd>: إعادة آخر لقطة<br>
   📱 على الهاتف: اسحب بإصبعك لتحريك اليدين، والإمساك تلقائي.<br>
   🔥 التصديات المتتالية ترفع مضاعف النقاط حتى ×3. تصدي الزوايا والكرات السريعة يعطي نقاطاً أعلى.<br>
-  ⚽ الفرص: جزاء، تسديدات من حدود الـ18، ضربات حرة بحائط، تسديدات بعيدة ومُتموّجة، انفرادات وكرات ساقطة، ورأسيات من عرضيات.
+  ⚽ الفرص: جزاء، تسديدات من حدود الـ18، ضربات حرة بحائط، تسديدات بعيدة ومُتموّجة، انفرادات وكرات ساقطة، ورأسيات من عرضيات.<br>
+  👀 <b>لا تتحرك مبكراً!</b> المسدد الذكي يقرأ ارتماءك قبل التسديدة ويغيّر الزاوية، وبعض منفذي الجزاء يتوقفون للخداع.<br>
+  🔁 الإبعاد الضعيف أمام المرمى قد يمنح المهاجم <b>متابعة</b>. أمسك الكرة أو أبعدها للجانب. المدافعون قد يحوّلون مسار الكرة.<br>
+  🌧️ في المطر تنزلق الكرة بسرعة على العشب ويصعب إمساكها.<br>
+  🪙 اجمع العملات والخبرة لتطوير الحارس وشراء القفازات والأطقم من المتجر.
  </div>
  <button class="btn" data-back>فهمت</button></div>
 
 <div id="pause" class="scr"><h2>⏸ إيقاف مؤقت</h2><button class="btn" id="bResume">استئناف</button><button class="ghost" id="bRestart">↻ إعادة البدء</button><button class="ghost" id="bSet2">⚙️ الإعدادات</button><button class="ghost" id="bQuit">🏠 القائمة الرئيسية</button></div>
 
-<div id="result" class="scr"><h2 id="resT">انتهت المباراة</h2><div id="resStars"></div><div id="resMsg" style="font-weight:800;font-size:18px"></div><div id="resStats"></div>
+<div id="result" class="scr"><h2 id="resT">انتهت المباراة</h2><div id="resStars"></div><div id="resMsg" style="font-weight:800;font-size:18px"></div><div id="resStats"></div><div id="rewards"></div>
  <div class="row"><button class="btn" id="bNext">البطولة التالية</button><button class="btn" id="bAgain">العب مرة أخرى</button><button class="ghost" id="bMenu2">🏠 القائمة</button></div></div>
 <div id="tip">صُنعت بـ three.js • كل المؤثرات الصوتية مولّدة لحظياً</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -176,8 +224,10 @@ const $=id=>document.getElementById(id);
 const IS_TOUCH=matchMedia('(pointer:coarse)').matches;
 /* حفظ التقدم والإعدادات */
 const SAVE_KEY='gkpro_v1';
-const save={sens:1.3,vol:.8,q:IS_TOUCH?'med':'high',tod:'night',replay:true,shake:true,assist:true,trail:true,diff:1,career:[0,0,0,0,0],best:{survival:0,shootout:0,career:0,training:0},wins:0};
-try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(d&&typeof d==='object'){Object.assign(save,d);save.best=Object.assign({survival:0,shootout:0,career:0,training:0},d.best||{})}}catch(_){}
+const save={sens:1.3,vol:.8,q:IS_TOUCH?'med':'high',tod:'night',replay:true,shake:true,assist:true,trail:true,diff:1,career:[0,0,0,0,0],best:{survival:0,shootout:0,career:0,training:0},wins:0,
+coins:0,xp:0,up:{ref:0,reach:0,hand:0,foc:0},own:{gl:['lime'],kit:['yellow']},glove:'lime',kit:'yellow',ach:{},tut:false,daily:{d:'',best:0,done:false},weather:'auto',voice:true,st:{saves:0,catches:0,pens:0,games:0}};
+try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(d&&typeof d==='object'){const def=JSON.parse(JSON.stringify(save));Object.assign(save,d);
+['best','up','own','daily','st'].forEach(k=>save[k]=Object.assign(def[k],d[k]||{}));save.ach=d.ach||{}}}catch(_){}
 function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(save))}catch(_){}}
 /* المحرك */
 const rend=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
@@ -188,7 +238,7 @@ const MAXA=rend.capabilities.getMaxAnisotropy();
 const scene=new THREE.Scene();
 const cam=new THREE.PerspectiveCamera(55,1,.05,1200);
 let camZ=5.2;
-function resize(){rend.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.fov=cam.aspect<1.3?68:56;camZ=5.2+Math.max(0,1.75-cam.aspect)*4;cam.updateProjectionMatrix()}
+function resize(){const W=Math.max(1,innerWidth),H=Math.max(1,innerHeight);rend.setSize(W,H);cam.aspect=W/H;cam.fov=cam.aspect<1.3?68:56;camZ=5.2+Math.max(0,1.75-cam.aspect)*4;cam.updateProjectionMatrix()}
 addEventListener('resize',resize);
 const C=h=>new THREE.Color(h).convertSRGBToLinear();
 const M=(c,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:C(c),roughness:.8},o));
@@ -230,7 +280,7 @@ sr(-34,-105,68,105);ln(-34,-52.5,34,-52.5);arc(0,-52.5,9.15,0,7);dot(0,-52.5);
 sr(-20.16,-16.5,40.32,16.5);sr(-9.16,-5.5,18.32,5.5);arc(0,-11,9.15,-2.496,-.645);dot(0,-11);
 sr(-20.16,-105,40.32,16.5);sr(-9.16,-105,18.32,5.5);arc(0,-94,9.15,.645,2.496);dot(0,-94);
 [[-34,0,-1.5708,0],[34,0,3.1416,4.7124],[-34,-105,0,1.5708],[34,-105,1.5708,3.1416]].forEach(([a,b,s0,e0])=>arc(a,b,1,s0,e0));
-const t=ctex(c);const f=new THREE.Mesh(new THREE.PlaneGeometry(90,130),new THREE.MeshStandardMaterial({map:t,roughness:.95}));
+const t=ctex(c);const f=new THREE.Mesh(new THREE.PlaneGeometry(90,130),FIELD_M=new THREE.MeshStandardMaterial({map:t,roughness:.95}));
 f.rotation.x=-PI/2;f.position.z=-57;f.receiveShadow=true;scene.add(f);
 const ap=new THREE.Mesh(new THREE.PlaneGeometry(300,320),M(0x24572d,{roughness:1}));ap.rotation.x=-PI/2;ap.position.set(0,-.02,-60);ap.receiveShadow=true;scene.add(ap)}
 /* ===== المرمى ===== */
@@ -391,6 +441,7 @@ mesh(new THREE.SphereGeometry(.018,6,6),sk,[0,-.01,.105],head);
 if(o.num){const t=numTex(o.num,o.name,o.numCol||'#111');const pl=new THREE.Mesh(new THREE.PlaneGeometry(.3,.3),new THREE.MeshStandardMaterial({map:t,transparent:true,roughness:.8}));pl.position.set(0,.3,-.137);pl.rotation.y=PI;torso.add(pl)}
 if(o.badge){const [c,x]=canvas(64,64);x.fillStyle=o.badge;x.beginPath();x.moveTo(32,4);x.lineTo(58,14);x.lineTo(54,44);x.lineTo(32,60);x.lineTo(10,44);x.lineTo(6,14);x.closePath();x.fill();x.strokeStyle='#fff';x.lineWidth=4;x.stroke();
 const pl=new THREE.Mesh(new THREE.PlaneGeometry(.08,.08),new THREE.MeshStandardMaterial({map:ctex(c),transparent:true}));pl.position.set(-.09,.4,.137);torso.add(pl)}
+const glM=o.keeper?M(o.glove||0x9cff3b,{roughness:.6}):null;
 const arm=sx=>{const s=new THREE.Group();s.position.set(sx*.235,.5,0);s.rotation.z=sx*.12;torso.add(s);
 mesh(new THREE.SphereGeometry(.065,10,8),sh,[0,0,0],s);
 mesh(new THREE.CylinderGeometry(.058,.046,.29,10).translate(0,-.145,0),o.keeper||o.long?sh:sk,null,s);
@@ -398,7 +449,7 @@ if(!o.keeper&&!o.long)mesh(new THREE.CylinderGeometry(.062,.06,.12,10).translate
 const e=new THREE.Group();e.position.y=-.29;s.add(e);
 mesh(new THREE.CylinderGeometry(.046,.036,.27,10).translate(0,-.135,0),o.keeper||o.long?sh:sk,null,e);
 const h=new THREE.Group();h.position.y=-.29;e.add(h);
-if(o.keeper){const gm=M(o.glove||0x9cff3b,{roughness:.6});mesh(new THREE.SphereGeometry(.075,12,10).scale(.95,1.35,.55),gm,[0,-.03,0],h);mesh(new THREE.CylinderGeometry(.052,.05,.06,10),M(0xffffff),[0,.04,0],h);mesh(new THREE.SphereGeometry(.03,8,6).scale(1,1.6,1),gm,[sx*-.06,-.01,.02],h)}
+if(o.keeper){const gm=glM;mesh(new THREE.SphereGeometry(.075,12,10).scale(.95,1.35,.55),gm,[0,-.03,0],h);mesh(new THREE.CylinderGeometry(.052,.05,.06,10),M(0xffffff),[0,.04,0],h);mesh(new THREE.SphereGeometry(.03,8,6).scale(1,1.6,1),gm,[sx*-.06,-.01,.02],h)}
 else mesh(new THREE.SphereGeometry(.045,10,8).scale(.9,1.2,.7),sk,[0,-.02,0],h);
 return{sh:s,el:e,hand:h,L1:.29,L2:.3,sx}};
 const leg=sx=>{const hp=new THREE.Group();hp.position.set(sx*.095,-.04,0);g.add(hp);
@@ -408,7 +459,7 @@ const kn=new THREE.Group();kn.position.y=-.45;hp.add(kn);
 mesh(new THREE.CylinderGeometry(.062,.045,.43,10).translate(0,-.215,0),so,null,kn);
 const an=new THREE.Group();an.position.y=-.44;kn.add(an);
 mesh(new THREE.BoxGeometry(.095,.075,.25),bt,[0,-.03,.05],an);return{hip:hp,knee:kn,ank:an}};
-const H={g,torso,head,aA:arm(1),aB:arm(-1),lA:leg(1),lB:leg(-1),o,mats:{sk,sh,pn,so}};return H}
+const H={g,torso,head,aA:arm(1),aB:arm(-1),lA:leg(1),lB:leg(-1),o,mats:{sk,sh,pn,so,gl:glM}};return H}
 function setKit(H,t){H.mats.sh.color.copy(C(t.shirt));H.mats.pn.color.copy(C(t.shorts));H.mats.so.color.copy(C(t.socks))}
 /* IK بعظمتين للذراع: الهدف بإحداثيات العالم، pole باتجاه الكوع (محلي للجذع) */
 function armIK(a,target,pole){const tor=a.sh.parent;_a.copy(target);tor.worldToLocal(_a);
@@ -430,7 +481,9 @@ const KW=new THREE.Group();scene.add(KW);KW.add(K.g);K.g.rotation.y=PI;
 addBodyCols(K,{k:1});
 const HANDS=[mk(dummy(K.aA.hand,0,-.03,0),.12,{k:1,hand:1}),mk(dummy(K.aB.hand,0,-.03,0),.12,{k:1,hand:1})];
 const kp={x:0,y:.99,f:0,vx:0,vy:0,vf:0,landed:false};
-const hand=new V(0,1.2,KZ-.08),tgt=new V(0,1.2,KZ-.08);let grip=false,kHold=false,HS=30;
+const hand=new V(0,1.2,KZ-.08),tgt=new V(0,1.2,KZ-.08);let grip=false,kHold=false,HS=30,readyB=0;
+/* إحصائيات الحارس (تتغير بالتطوير من المتجر) */
+const KS={k:1,vmax:11,hs:30,xf:.74,cr:.12,catchB:0,fdur:1.7,fsl:.33};const RAIN={on:false};
 const holdT=new V(),poleA=new V(),poleB=new V(),_r=new V(),_u=new V(),_tA=new V(),_tB=new V();
 function poseKeeper(){
 KW.position.set(kp.x,kp.y,KZ);KW.rotation.z=-kp.f;
@@ -443,7 +496,7 @@ K.torso.rotation.x=cr*.38;K.head.rotation.x=-cr*.25;
 KW.updateMatrixWorld(true);
 /* اليدان متجاورتان عمودياً على محور الجسم */
 _u.set(Math.sin(kp.f),Math.cos(kp.f),0);_r.set(Math.cos(kp.f),-Math.sin(kp.f),0);
-const sep=grip||kHold?.085:.12;_tA.copy(hand).addScaledVector(_r,sep);_tB.copy(hand).addScaledVector(_r,-sep);
+const sep=grip||kHold?.085:lerp(.12,.27,readyB);_tA.copy(hand).addScaledVector(_r,sep);_tB.copy(hand).addScaledVector(_r,-sep);
 K.aA.sh.getWorldPosition(_a);K.aB.sh.getWorldPosition(_b);
 const aFirst=_a.sub(_b).dot(_r)>0;
 poleA.set(1,-.55,-.35);poleB.set(-1,-.55,-.35);
@@ -451,14 +504,15 @@ armIK(K.aA,aFirst?_tA:_tB,poleA);armIK(K.aB,aFirst?_tB:_tA,poleB);
 K.aA.hand.rotation.set(-.3,0,0);K.aB.hand.rotation.set(-.3,0,0);
 KW.updateMatrixWorld(true)}
 function updKeeper(dt){
-const T=kHold?holdT.set(kp.x*.92,kp.y+.32,KZ-.25):tgt;
-_a.copy(T).sub(hand);const l=_a.length();if(l>1e-4)hand.addScaledVector(_a.multiplyScalar(1/l),Math.min(l,HS*dt));
+const rdy=(st==='intro'||st==='run')&&!kHold&&Math.abs(tgt.x)<1.3&&tgt.y>.5&&tgt.y<1.7?1:0;readyB+=(rdy-readyB)*Math.min(1,dt*6);
+const T=kHold?holdT.set(kp.x*.92,kp.y+.32,KZ-.25):(lock==='g'&&fT-lockT>.5)?holdT.set(kp.x*.85,.45,KZ-.08):tgt;
+_a.copy(T).sub(hand);const l=_a.length();if(l>1e-4)hand.addScaledVector(_a.multiplyScalar(1/l),Math.min(l,KS.hs*dt));
 const dx=hand.x,hy=hand.y,ax=Math.abs(dx);
-const fD=Math.sign(dx)*cl((ax-.5)*.52,0,1.45-.32*cl(hy-1.5,0,1)),xD=dx*.74;
+const fD=Math.sign(dx)*cl((ax-.5)*.52,0,1.45-.32*cl(hy-1.5,0,1)),xD=dx*KS.xf;
 const yS=cl(.5+hy*.45,.62,1.55),yV=Math.max(.24,hy-.86*Math.cos(fD)-.15*Math.abs(Math.sin(fD)));
-let yD=lerp(yS,Math.min(yV,1.55),cl(Math.abs(fD)/.9,0,1));yD=Math.max(yD,.62*Math.cos(fD)-.08);
-const sp=(p,v,t,k,c)=>v+(k*(t-p)-c*v)*dt;
-kp.vx=cl(sp(kp.x,kp.vx,xD,110,16),-11,11);kp.vy=cl(sp(kp.y,kp.vy,yD,130,17),-9,9);kp.vf=sp(kp.f,kp.vf,fD,120,16);
+let yD=lerp(yS,Math.min(yV,1.55),cl(Math.abs(fD)/.9,0,1));yD=Math.max(yD,.62*Math.cos(fD)-.08);yD-=readyB*(.09+Math.sin(performance.now()/95)*.025);
+const sp=(p,v,t,k,c)=>v+(k*(t-p)-c*v)*dt,kk=KS.k,kc=Math.sqrt(kk);
+kp.vx=cl(sp(kp.x,kp.vx,xD,110*kk,16*kc),-KS.vmax,KS.vmax);kp.vy=cl(sp(kp.y,kp.vy,yD,130*kk,17*kc),-9,9);kp.vf=sp(kp.f,kp.vf,fD,120*kk,16*kc);
 kp.x+=kp.vx*dt;kp.y=Math.max(.22,kp.y+kp.vy*dt);kp.f+=kp.vf*dt;
 if(kp.y<.36&&Math.abs(kp.f)>.9&&!kp.landed){kp.landed=true;_a.set(kp.x+Math.sin(kp.f)*.4,.05,KZ);emitDust(_a,26,1.6);sfx('thud',.8);shake(.12)}
 if(kp.y>.6)kp.landed=false;
@@ -526,8 +580,8 @@ function integ(b,dt){
 const sp=b.v.length();_ia.set(0,-G,0).addScaledVector(b.v,-.0133*sp);_iw.copy(b.w).cross(b.v);_ia.addScaledVector(_iw,.0045);
 if(b.kn){b.knT+=dt;_ia.x+=Math.sin(b.knT*b.knF+b.knP)*b.kn;_ia.y+=Math.cos(b.knT*b.knF*1.37+b.knP*2)*b.kn*.55}
 b.v.addScaledVector(_ia,dt);b.p.addScaledVector(b.v,dt);b.w.multiplyScalar(1-.08*dt);
-if(b.p.y<R&&b.v.y<0){b.p.y=R;if(b.v.y<-1.2){if(b.real)onBounce(-b.v.y);b.v.y*=-.66;b.v.x*=.9;b.v.z*=.9;b.kn*=.3}else b.v.y=0}
-if(b.p.y<R+.003&&Math.abs(b.v.y)<.01){const f=1-.45*dt;b.v.x*=f;b.v.z*=f;b.w.set(b.v.z/R,b.w.y*.98,-b.v.x/R)}}
+if(b.p.y<R&&b.v.y<0){b.p.y=R;if(b.v.y<-1.2){if(b.real)onBounce(-b.v.y);const wf=RAIN.on?.97:.9;b.v.y*=RAIN.on?-.55:-.66;b.v.x*=wf;b.v.z*=wf;b.kn*=.3}else b.v.y=0}
+if(b.p.y<R+.003&&Math.abs(b.v.y)<.01){const f=1-(RAIN.on?.2:.45)*dt;b.v.x*=f;b.v.z*=f;b.w.set(b.v.z/R,b.w.y*.98,-b.v.x/R)}}
 ball.real=true;
 function solve(p0,t,T,w){
 const v=new V((t.x-p0.x)/T,(t.y-p0.y+.5*G*T*T)/T,(t.z-p0.z)/T);
@@ -652,6 +706,11 @@ if(c.kn){c.knF=rnd(6,10);c.knP=Math.random()*7}
 if(!c.cross)c.v=c.gr?solveG(p,tg.x,spd):solve(p,tg,c.T,c.w);
 else{c.head=new V(p.x,1.92,p.z);c.cv=solveAt(c.cross.from,c.head,c.cross.T,new V())}
 c.d=new V(-p.x,0,-p.z).normalize();
+/* شخصية المسدد: الاسم، المهارة، الركض المتقطع، قراءة الحارس، وإيحاء الجسم في المستويات السهلة */
+c.player=pick(NAMES);c.stars=cl(Math.round(1+s*3.4+Math.random()*.8),1,5);
+if(kind==='pen'&&!c.sty.includes('بانينكا')&&Math.random()<.18+.32*s){c.stut=1;c.sty+=' • ركض متقطع'}
+c.smart=!c.cross&&!c.sty.includes('بانينكا')&&Math.random()<.3+.55*s;
+c.cue=s<.5?Math.sign(tg.x)*.32*(1-s*2):0;
 return c}
 /* ===== اللاعبون الآليون ===== */
 const SH=human({shirt:0xd8232a,shorts:0xffffff,socks:0xd8232a,skin:0xc98e62,hair:0x111111,num:'9',numCol:'#fff',badge:'#f7c948'});
@@ -669,11 +728,13 @@ function face(H,dx,dz){H.g.rotation.y=Math.atan2(dx,dz)}
 const _sp=new V();
 function poseActors(rt,c){if(!c)return;const ft=rt-c.runT,react=c.lockAt!=null&&rt>c.lockAt,rT=react?rt-c.lockAt:0;
 const kickL=c.foot>0?SH.lB:SH.lA,plantL=kickL===SH.lA?SH.lB:SH.lA,kickA=c.foot>0?SH.aB:SH.aA,otherA=kickA===SH.aA?SH.aB:SH.aA;
+SH.torso.rotation.y=0;
 if(!c.cross){
 if(rt<0){SH.g.position.copy(c.s0);face(SH,c.d0.x,c.d0.z);idlePose(SH,rt)}
-else if(rt<c.runT){const u=rt/c.runT,e=1-Math.pow(1-u,1.35);SH.g.position.lerpVectors(c.s0,c.s1,e);SH.g.position.y=.95+Math.abs(Math.sin(rt*11))*.06;face(SH,c.d0.x,c.d0.z);
-if(u<.78)runPose(SH,rt*11);else{const k=(u-.78)/.22;setLeg(kickL,lerp(-.4,1.05,k),lerp(.6,1.5,k),c.foot*-.05);setLeg(plantL,-.35,.3,c.foot*.05);
-setArmRot(kickA,-.5,c.foot*-.2,-.4);setArmRot(otherA,-.3,c.foot*.95,-.3);SH.torso.rotation.x=.05-k*.12}}
+else if(rt<c.runT){const u=rt/c.runT;let e=1-Math.pow(1-u,1.35),amp=1;if(c.stut){if(u<.38)e=u/.38*.5;else if(u<.72){e=.5+(u-.38)/.34*.1;amp=.3}else e=.6+(u-.72)/.28*.4}
+SH.g.position.lerpVectors(c.s0,c.s1,e);SH.g.position.y=.95+Math.abs(Math.sin(rt*11))*.06*amp;face(SH,c.d0.x,c.d0.z);
+if(u<.78)runPose(SH,rt*11,amp);else{const k=(u-.78)/.22;setLeg(kickL,lerp(-.4,1.05,k),lerp(.6,1.5,k),c.foot*-.05);setLeg(plantL,-.35,.3,c.foot*.05);
+setArmRot(kickA,-.5,c.foot*-.2,-.4);setArmRot(otherA,-.3,c.foot*.95,-.3);SH.torso.rotation.x=.05-k*.12;SH.torso.rotation.y=(c.cue||0)*k}}
 else{const k=cl(ft/.12,0,1),k2=cl((ft-.12)/.5,0,1);_sp.copy(c.s1).addScaledVector(c.d,Math.min(ft,.6)*1.2);SH.g.position.copy(_sp);SH.g.position.y=.97;face(SH,c.d.x,c.d.z);
 if(!react||rT<.5){setLeg(kickL,lerp(1.05,-1.5,k)+k2*1.3,lerp(1.5,.15,k)+k2*.2,0);setLeg(plantL,-.2,.25,0);setArmRot(kickA,-.3,c.foot*-.3,-.4);setArmRot(otherA,-.2,c.foot*.9,-.3);SH.torso.rotation.x=-.12*k}
 else reactPose(SH,c,rT-.5)}}
@@ -692,7 +753,8 @@ else reactPose(SH,c,rT-.6)}
 /* الحائط يقفز لحظة التسديد */
 if(c.wall){const j=ft>0&&ft<.7?Math.sin(PI*ft/.7)*.45:0;WL.forEach(h=>{if(!h.base)return;h.g.position.copy(h.base);h.g.position.y=h.base.y+j;const s=j>0?.5:0;setLeg(h.lA,-s*.6,s*1.1,.05);setLeg(h.lB,-s*.6,s*1.1,-.05)})}
 /* الحكم */
-if(c.ref){REF.g.position.copy(c.ref);face(REF,c.p0.x-c.ref.x,c.p0.z-c.ref.z);idlePose(REF,rt);if(rt>-.35&&rt<.45)setArmRot(REF.aA,-2.7,.2,-.1)}}
+if(c.ref){REF.g.position.copy(c.ref);face(REF,c.p0.x-c.ref.x,c.p0.z-c.ref.z);idlePose(REF,rt);if(rt>-.35&&rt<.45)setArmRot(REF.aA,-2.7,.2,-.1)}
+poseExtras(rt,c,ft)}
 function reactPose(H,c,t){H.head.rotation.x=0;
 if(c.lock==='g'){const a=Math.min(t,2.4);_sp.copy(H.g.position);H.g.position.copy(c.celebFrom).addScaledVector(c.celebDir,a*4.2);H.g.position.y=.97+Math.abs(Math.sin(t*10))*.06;face(H,c.celebDir.x,c.celebDir.z);
 runPose(H,t*10,.8);setArmRot(H.aA,-2.9,.5,-.1);setArmRot(H.aB,-2.9,-.5,-.1);H.torso.rotation.x=-.1}
@@ -702,13 +764,13 @@ else idlePose(H,t)}
 function placeActors(c,team){setOpp(team);
 const p=c.p0,d=c.d,pe=new V(-d.z,0,d.x);c.d0=d.clone();
 if(!c.cross){const ang=c.foot*.42*(c.kind==='pen'?.8:1),ca=Math.cos(ang),sa=Math.sin(ang),ad=new V(d.x*ca-d.z*sa,0,d.x*sa+d.z*ca);c.d0=ad;
-c.s0=p.clone().addScaledVector(ad,-c.run);c.s0.y=.97;c.s1=p.clone().addScaledVector(d,-.42).addScaledVector(pe,c.foot*.2);c.s1.y=.97;c.runT=c.run/5+.3;CR.g.position.y=-50}
+c.s0=p.clone().addScaledVector(ad,-c.run);c.s0.y=.97;c.s1=p.clone().addScaledVector(d,-.42).addScaledVector(pe,c.foot*.2);c.s1.y=.97;c.runT=c.run/5+.3+(c.stut?.55:0);CR.g.position.y=-50}
 else{const cx=c.cross,cd=c.head.clone().sub(cx.from).setY(0).normalize();c.cd=cd;c.cs0=cx.from.clone().addScaledVector(cd,-3);c.cs0.y=.97;c.cs1=cx.from.clone().addScaledVector(cd,-.45);c.cs1.y=.97;c.runT=.95;
 c.s1=new V(c.head.x,.97,c.head.z-.25);c.s0=c.s1.clone().addScaledVector(d,-5.5).addScaledVector(pe,sgn()*2);c.s0.y=.97}
 CR.g.visible=!!c.cross;WL.forEach((h,i)=>{h.g.visible=!!c.wall;if(!c.wall){h.g.position.y=-50;h.base=null;h.cols.forEach(cc=>cc.off=true);return}
 h.base=p.clone().addScaledVector(d,9.15).addScaledVector(pe,(i-1.5)*.58);h.base.y=.97;h.g.position.copy(h.base);h.g.rotation.y=Math.atan2(-d.x,-d.z);h.cols.forEach(cc=>{cc.off=false;cc.init=false})});
 const rs=p.x>0?-1:1;c.ref=new V(cl(p.x+rs*rnd(6,9),-30,30),.97,Math.min(p.z+rnd(2,5),-6));if(c.kind==='pen')c.ref.set(-7*rs,.97,-12.5);
-c.celebDir=new V(p.x>=0?1:-1,0,-.6).normalize();c.lockAt=null;c.lock=null;poseActors(-1,c)}
+c.celebDir=new V(p.x>=0?1:-1,0,-.6).normalize();c.lockAt=null;c.lock=null;placeExtras(c);poseActors(-1,c)}
 /* ======================================================================
    القسم 4: منطق المباراة — الفرص، الأحداث، النقاط، الأنماط، التركيز، الإعادة
    ====================================================================== */
@@ -717,30 +779,35 @@ let tScale=1,catchMax=22,ASSIST_R=1.2,kindPrev='',trainKind=0,GM=null;
 const focus={ch:1,act:0};
 function applyDifficulty(){const s=GM.s;catchMax=26-9*s;ASSIST_R=save.assist?1.45-.75*s:0}
 function newGame(mode,opt={}){
-const stg=mode==='career'?STAGES[opt.stage||0]:null,s=stg?stg.s:DIFF[save.diff];
-GM={mode,stage:opt.stage||0,s,idx:0,pts:0,streak:0,bestStreak:0,lives:3,saves:0,catches:0,goals:0,other:0,maxKmh:0,perfect:0,rt:6,shots:0,
-so:{us:[],them:[]},team:stg?TEAMS[opt.stage||0]:pick(TEAMS)};
-focus.ch=1;focus.act=0;tScale=1;kindPrev='';applyDifficulty();
+const stg=mode==='career'?STAGES[opt.stage||0]:null,s=stg?stg.s:mode==='daily'?.8:mode==='tutorial'?.1:DIFF[save.diff];
+GM={mode,stage:opt.stage||0,s,idx:0,pts:0,streak:0,bestStreak:0,lives:3,saves:0,catches:0,goals:0,other:0,maxKmh:0,perfect:0,rt:6,shots:0,dbl:0,
+so:{us:[],them:[]},team:stg?TEAMS[opt.stage||0]:pick(TEAMS),tut:0,rng:mode==='daily'?mulberry(daySeed()):null};
+GM.rain=mode!=='tutorial'&&(save.weather==='rain'||(save.weather==='auto'&&Math.random()<.25));
+focus.ch=1;focus.act=0;tScale=1;kindPrev='';applyUpgrades();applyDifficulty();applyWeather(GM.rain);$('tutBox').classList.toggle('hide',mode!=='tutorial');
 showScreen(null);$('hud').classList.remove('hide');$('hud').style.opacity=1;$('rec').style.display='none';$('lbT').classList.remove('on');$('lbB').classList.remove('on');RP=null;$('trainKeys').classList.toggle('hide',mode!=='training');
 $('lvl').style.display=mode==='survival'?'':'none';
 sndStart();grab();setupChance()}
 function setupChance(){
-let kind;
-if(GM.mode==='shootout')kind='pen';
+let kind;const r0=Math.random;if(GM.rng)Math.random=GM.rng;
+try{
+if(GM.mode==='tutorial')kind=TUT[GM.tut].kind;
+else if(GM.mode==='shootout')kind='pen';
 else if(GM.mode==='training'&&trainKind>0)kind=KLIST[trainKind-1];
 else{const pool=GM.mode==='career'&&GM.stage===0?['pen','box','one','long','fk']:KLIST;do{kind=pick(pool)}while(kind===kindPrev&&pool.length>1)}
 kindPrev=kind;GM.shots++;
-cur=makeShot(kind,GM.s);placeActors(cur,GM.team);
+cur=makeShot(kind,GM.s);if(GM.mode==='tutorial')tutShape(cur);placeActors(cur,GM.team);
+}finally{Math.random=r0}
 ball.p.copy(cur.cross?cur.cross.from:cur.p0);ball.v.set(0,0,0);ball.w.set(0,0,0);ball.ins=false;ball.held=false;ball.kn=0;ball.knT=0;bm.quaternion.identity();
-resetKeeper();trailReset();
+resetKeeper();trailReset();aim.set(0,1.2,0);
 lock=null;touched=touchHand=hitPost=blocked=fingertip=false;fT=0;tm=0;rt=-2;st='intro';REC.length=0;
 camIntro();
-const title=GM.mode==='shootout'?`الركلة ${GM.so.them.length+1}`:GM.mode==='training'?'تدريب':`الفرصة ${GM.idx+1}`;
-banner(title,`${cur.ic} ${cur.name}`,'#f7c948');shotInfo(`${cur.ic} ${cur.sty} • ${GM.team.n}`);
+const title=GM.mode==='shootout'?`الركلة ${GM.so.them.length+1}`:GM.mode==='training'?'تدريب':GM.mode==='tutorial'?`الدرس ${GM.tut+1}/${TUT.length}`:GM.mode==='daily'?`تحدي اليوم ${GM.idx+1}/10`:`الفرصة ${GM.idx+1}`;
+banner(title,`${cur.ic} ${cur.name}${GM.rain?' • 🌧️ مطر':''}`,'#f7c948');shotInfo(`${cur.ic} ${cur.player} ${'★'.repeat(cur.stars)} • ${cur.sty}`);
+if(GM.mode==='tutorial')tutShow();
 trajLine.visible=false;hud();drawScr()}
 function kick(){
 if(cur.cross){ball.p.copy(cur.cross.from);ball.v.copy(cur.cv);ball.w.set(0,0,0);sfx('kick',.8)}
-else{ball.v.copy(cur.v);ball.w.copy(cur.w);ball.kn=cur.kn;ball.knF=cur.knF;ball.knP=cur.knP;ball.knT=0;sfx('kick',cl(cur.v.length()/24,.5,1.3));computeDanger();shake(.03)}
+else{smartRead();ball.v.copy(cur.v);ball.w.copy(cur.w);ball.kn=cur.kn;ball.knF=cur.knF;ball.knP=cur.knP;ball.knT=0;sfx('kick',cl(cur.v.length()/24,.5,1.3));computeDanger();shake(.03)}
 emitGrass(ball.p,14,ball.v.clone().normalize().multiplyScalar(.4));emitDust(ball.p,6,.6);st='fly';fT=0;shotInfo('')}
 function header(){const T=Math.hypot(cur.tg.x-ball.p.x,ball.p.z)/cur.spd;ball.v.copy(solve(ball.p.clone(),cur.tg,T,new V()));ball.w.set(0,0,0);cur.headed=true;sfx('head',1);computeDanger()}
 function computeDanger(){const pr=predict(0,3);cur.kmh=ball.v.length()*3.6;GM.maxKmh=Math.max(GM.maxKmh,cur.kmh);
@@ -749,12 +816,12 @@ const ax=Math.abs(pr.x),place=cl((ax-.6)/2.8,0,1)*.6+(pr.y>1.8||pr.y<.45?.4:pr.y
 cur.danger=cl(.55*place+.45*react+(cur.kn?.1:0)+(cur.w.y?.05:0),0,1);
 if(GM.mode==='training'&&save.trail)showTraj()}
 /* ===== أحداث الفيزياء ===== */
-function canCatch(rel){return(grip||IS_TOUCH)&&!lock&&st==='fly'&&!(cur.cross&&!cur.headed)&&rel<catchMax&&ball.p.z<KZ+.12}
+function canCatch(rel){return(grip||IS_TOUCH)&&!lock&&st==='fly'&&!(cur.cross&&!cur.headed)&&rel<catchMax+KS.catchB-(RAIN.on?2.5:0)&&ball.p.z<KZ+.12}
 function onCatch(){ball.held=true;kHold=true;ball.v.set(0,0,0);ball.w.set(0,0,0);ball.kn=0;touched=true;touchHand=true;touchT=fT;sfx('catch',1);emitSpark(ball.p,18);shake(.07);finish('s',{catch:1})}
 function onKeeper(vn,c,rel){if(!touched){touched=true;touchT=fT;touchHand=!!c.hand;sfx(c.hand?'glove':'body',cl(vn/18,.4,1.2));if(c.hand)emitSpark(ball.p,16);shake(cl(vn/70,.02,.12));
 if(c.hand&&grip&&rel>=catchMax&&!lock)popAtBall('💥 قوية جداً للإمساك','#ffb84d')}else sfx(c.hand?'glove':'body',cl(vn/30,.15,.6))}
 function onPost(vn){if(vn<1)return;if(!hitPost&&!lock&&!touched)ooh(.9);hitPost=true;postT=fT;if(touched&&touchHand)fingertip=true;sfx('post',cl(vn/22,.3,1.2));shake(.05);emitSpark(ball.p,10,0xffffff)}
-function onWall(vn){if(!blocked){blocked=true;blkT=fT;sfx('body',.7)}}
+function onWall(vn,c){if(!blocked){blocked=true;blkT=fT;sfx('body',.7);if(c&&c.df){cur.defl=1;popAtBall('↯ تحويل!','#ffb84d')}}}
 function onNet(v){sfx('net',cl(v/20,.3,1))}
 function onBounce(v){if(v>2.5)sfx('bounce',cl(v/10,.2,.8))}
 function holdBall(){ball.p.copy(HANDS[0].pos).add(HANDS[1].pos).multiplyScalar(.5);ball.p.z-=.06}
@@ -764,34 +831,38 @@ const n=Math.max(1,Math.ceil(dt/(1/300))),h=dt/n;
 for(let i=0;i<n;i++){const pz=ball.p.z;integ(ball,h);collide();if(ball.held){holdBall();return}netBall(h);
 if(!lock&&pz<0&&ball.p.z>=0){if(Math.abs(ball.p.x)<GW-.02&&ball.p.y<GH-.02)finish('g');else{if(touched&&touchHand)fingertip=true;finish(touched?'s':hitPost?'post':'wide')}}}
 if(lock)return;
+if(cur.reb&&!cur.reb.kicked)return;
+if(touched&&!cur.reb&&rebCheck())return;
 const danger=ball.v.z>.3&&ball.p.z>-4&&Math.abs(ball.p.x)<GW+.6&&ball.p.y<GH+.5;
-if(touched&&fT-touchT>1&&(!danger||fT-touchT>3))finish('s');else if(blocked&&!touched&&fT-blkT>.9)finish('wall');else if(hitPost&&fT-postT>1.1&&!danger)finish(touched?'s':'post');else if(fT>6)finish(touched?'s':'wide')}
+if(touched&&fT-touchT>1&&(!danger||fT-touchT>3))finish('s');else if(blocked&&!touched&&fT-blkT>.9&&(!danger||fT-blkT>3))finish('wall');else if(hitPost&&fT-postT>1.1&&!danger)finish(touched?'s':'post');else if(fT>6)finish(touched?'s':'wide')}
 /* ===== النتيجة ===== */
 const GOALTXT=['الكرة سكنت الشباك','لا يُصد ولا يُرد','الشباك تهتز!','تسديدة لا ترحم'];
 function finish(r,o={}){if(lock)return;lock=r;lockT=fT;cur.lock=r;cur.lockAt=rt;
-cur.celebFrom=cur.cross?cur.s1.clone():cur.s1.clone().addScaledVector(cur.d,.72);cur.celebFrom.y=.97;
-const g=GM,isC=!!o.catch,dg=cur.danger||.3;
-if(r==='g'){g.goals++;g.streak=0;g.rt=cl(g.rt-.4,0,10);banner('جووول! ⚽',pick(GOALTXT)+' • التقييم −0.4','#ff5a4d');roar(.95);crowdCheer(.9);adMessage('GOAL!','#d8232a');
+cur.celebFrom=cur.cross?cur.s1.clone():cur.s1.clone().addScaledVector(cur.d,.72);if(cur.reb&&cur.reb.kicked&&cur.reb.h===SH)cur.celebFrom.copy(cur.reb.to);cur.celebFrom.y=.97;
+const g=GM,isC=!!o.catch,dg=cur.danger||.3,dbl=!!(cur.reb&&cur.reb.kicked&&r==='s');
+if(r==='g'){g.goals++;g.streak=0;g.rt=cl(g.rt-.4,0,10);banner('جووول! ⚽',(cur.defl?'تحويل غيّر مسار الكرة':cur.read?'المسدد قرأ تحركك المبكر':pick(GOALTXT))+' • التقييم −0.4','#ff5a4d');roar(.95);crowdCheer(.9);adMessage('GOAL!','#d8232a');
 if(g.mode==='survival'){g.lives--;popCenter(`💔 ${g.lives} أرواح متبقية`,'#ff5a4d')}if(g.mode==='shootout')g.so.them.push(true)}
 else if(r==='s'){g.saves++;g.streak++;g.bestStreak=Math.max(g.bestStreak,g.streak);if(isC)g.catches++;if(dg>.7)g.perfect++;
-const mult=1+Math.min(g.streak-1,8)*.25,pts=Math.round((100+400*dg)*mult*(isC?1.5:1)*(fingertip?1.3:1)/5)*5;g.pts+=pts;
+if(dbl)g.dbl++;const mult=1+Math.min(g.streak-1,8)*.25,pts=Math.round((100+400*dg)*mult*(isC?1.5:1)*(fingertip?1.3:1)*(dbl?1.6:1)*(GM.rain?1.15:1)/5)*5;g.pts+=pts;
 g.rt=cl(g.rt+(dg>.6?.3:.2),0,10);const f0=focus.ch;focus.ch=Math.min(3,focus.ch+(isC?1:.5));if(Math.floor(focus.ch)>Math.floor(f0))setTimeout(()=>popCenter('⏱ شحنة تركيز جديدة!','#7fd4ff'),500);
-const t=isC?'إمساك رائع! ✊':fingertip?'بأطراف الأصابع! 🖐️':dg>.72?'تصدٍّ خرافي! 🧤':dg>.45?'تصدٍّ رائع! 🧤':'تصدٍّ! 🧤';
+const t=dbl?'تصدٍّ مزدوج! 🧤🧤':isC?'إمساك رائع! ✊':fingertip?'بأطراف الأصابع! 🖐️':dg>.72?'تصدٍّ خرافي! 🧤':dg>.45?'تصدٍّ رائع! 🧤':'تصدٍّ! 🧤';
 banner(t,`+${pts} نقطة${mult>1?` • مضاعف ×${mult}`:''}`,'#9cff3b');popAtBall('+'+pts,'#9cff3b');
 roar(.55+dg*.4);crowdCheer(.55+dg*.5);adMessage(isC?'CATCH!':'SAVE!','#0f8a4b');flashScreen(dg>.7?.35:.12);sfx('coin');
 if(dg>.7||fingertip)emitConfetti(new V(kp.x,2.5,KZ-1),90);
 if(g.mode==='shootout')g.so.them.push(false);
 if(g.mode==='survival'&&g.saves%5===0){g.s=Math.min(1,g.s+.07);applyDifficulty();setTimeout(()=>popCenter('⬆️ المستوى '+(Math.round((g.s-DIFF[save.diff])/.07)+1),'#f7c948'),700)}}
 else{g.other++;if(g.mode==='shootout')g.so.them.push(false);
-if(r==='post'){banner('القائم! 😮','نجوت بأعجوبة','#f7c948');roar(.4)}else if(r==='wall'){banner('الحائط يصد! 🧱','دفاع بطولي','#f7c948');roar(.45);crowdCheer(.3)}else{banner('خارج المرمى','تسديدة طائشة','#ffffff');ooh(.6)}}
-if(r!=='g'||g.mode!=='survival')void 0;
+if(r==='post'){banner('القائم! 😮','نجوت بأعجوبة','#f7c948');roar(.4)}else if(r==='wall'){banner(cur.defl?'المدافع يصد! 🛡️':'الحائط يصد! 🧱','دفاع بطولي','#f7c948');roar(.45);crowdCheer(.3)}else{banner('خارج المرمى','تسديدة طائشة','#ffffff');ooh(.6)}}
+onResult(r,{isC,dbl,dg});
 hud();drawScr()}
 /* ===== التسلسل بعد كل فرصة ===== */
 function afterShot(){if(save.replay&&GM.mode!=='training'&&worthReplay()&&REC.length>10){startReplay();return}nextStep()}
-function worthReplay(){const d=cur.danger||0;return(lock==='g'&&d>.55)||(lock==='s'&&(d>.62||fingertip))||lock==='post'}
+function worthReplay(){const d=cur.danger||0;return(lock==='g'&&d>.55)||(lock==='s'&&(d>.62||fingertip||(cur.reb&&cur.reb.kicked)))||lock==='post'}
 function nextStep(){const g=GM;
 if(g.mode==='shootout'){const d=soDecided();if(d){endGame(d);return}st='ourkick';tm=0;ourRes=null;banner('فريقك يسدد…',`⚽ الركلة ${g.so.us.length+1}`,'#ffffff');hideRing();return}
+if(g.mode==='tutorial'){tutNext();return}
 g.idx++;
+if(g.mode==='daily'&&g.idx>=10){endGame();return}
 if(g.mode==='career'&&(g.idx>=STAGES[g.stage].shots||g.goals>STAGES[g.stage].allow)){endGame();return}
 if(g.mode==='survival'&&g.lives<=0){endGame();return}
 setupChance()}
@@ -803,9 +874,9 @@ if(tm>1.3&&ourRes===null){ourRes=Math.random()<(.8-.14*GM.s);GM.so.us.push(ourRe
 if(ourRes){roar(.8);crowdCheer(.7)}else ooh(.7);hud();drawScr()}
 if(tm>3.1){const d=soDecided();if(d)endGame(d);else{GM.idx++;setupChance()}}}
 /* ===== التركيز (إبطاء الزمن) ===== */
-function useFocus(){if(paused||!(st==='run'||st==='fly')||lock||focus.act>0||focus.ch<1)return;focus.ch-=1;focus.act=1.7;sfx('slowIn');$('vig').style.opacity=1;hud()}
+function useFocus(){if(paused||!(st==='run'||st==='fly')||lock||focus.act>0||focus.ch<1)return;focus.ch-=1;focus.act=KS.fdur;GM.usedFocus=true;sfx('slowIn');$('vig').style.opacity=1;hud()}
 function updFocus(dt){if(focus.act>0){focus.act-=dt;if(focus.act<=0||(lock&&fT-lockT>.3)){focus.act=0;sfx('slowOut');$('vig').style.opacity=0}}
-const tt=st==='replay'?1:focus.act>0?.33:1;tScale+=(tt-tScale)*Math.min(1,dt*10)}
+const tt=st==='replay'?1:focus.act>0?KS.fsl:1;tScale+=(tt-tScale)*Math.min(1,dt*10)}
 /* ===== الإعادة البطيئة ===== */
 const REC=[];let RP=null;
 function recFrame(){if(REC.length>3000||(lock&&fT-lockT>1.3))return;REC.push({rt,b:ball.p.clone(),q:bm.quaternion.clone(),kx:kp.x,ky:kp.y,kf:kp.f,h:hand.clone(),gr:grip,kh:kHold,ins:ball.ins})}
@@ -851,6 +922,7 @@ if(goalIn(tp,wL.lerpVectors(tl,bT,1)))lo=1;else{let hi=1;for(let i=0;i<6;i++){co
 tl.lerp(bT,lo*fw)}
 if(camCut>0){camCut-=dt;if(camCut>0)camP.addScaledVector(cur.d,.45*dt);else{camP.copy(tp);camL.copy(tl)}}
 else{const k=1-Math.exp(-(2.5+5.5*fw)*dt);camP.lerp(tp,k);camL.lerp(tl,k)}}
+if(!isFinite(camP.x+camP.y+camP.z))camP.set(0,2.4,6);if(!isFinite(camL.x+camL.y+camL.z))camL.set(0,1,-5);
 cam.position.copy(camP);if(shakeA>.001){cam.position.x+=(Math.random()-.5)*shakeA;cam.position.y+=(Math.random()-.5)*shakeA}shakeA*=Math.exp(-7*dt);cam.lookAt(camL)}
 /* الإطار يصبح شفافاً حين يحجب الكرة أو المسدد */
 const occ=new THREE.Raycaster(),_t=new V(),_rr=new V(),_dd=new V(),_s=new V();
@@ -903,13 +975,13 @@ function popCenter(t,col){popAt(t,col,innerWidth/2,innerHeight*.42)}
 function flashScreen(a){const f=$('flash');f.style.transition='none';f.style.opacity=a;requestAnimationFrame(()=>{f.style.transition='opacity .6s';f.style.opacity=0})}
 const hexc=n=>'#'+n.toString(16).padStart(6,'0');
 function hud(){const g=GM;if(!g)return;
-$('sbMode').textContent={career:STAGES[g.stage].ic+' '+STAGES[g.stage].n,survival:'❤️ البقاء',shootout:'🎯 ركلات الترجيح',training:'🏋️ تدريب'}[g.mode];
+$('sbMode').textContent={career:STAGES[g.stage].ic+' '+STAGES[g.stage].n,survival:'❤️ البقاء',shootout:'🎯 ركلات الترجيح',training:'🏋️ تدريب',tutorial:'🎓 الدرس التعليمي',daily:'📅 تحدي اليوم'}[g.mode]+(g.rain?' 🌧️':'');
 if(g.mode==='shootout'){const so=g.so,a=so.them.filter(Boolean).length,b=so.us.filter(Boolean).length,n=Math.max(5,so.them.length,so.us.length),st0=Math.max(0,n-5);
 const row=(arr,mine)=>{let h='';for(let i=st0;i<st0+5;i++){const v=arr[i];h+=`<i class="${v===undefined?'':(v===mine?'ok':'no')}"></i>`}return h};
 $('sbMain').innerHTML=`فريقك ${b} – ${a} ${g.team.n}`;$('sbSub').innerHTML=`<div class="dots">${row(so.us,true)}</div>&nbsp;|&nbsp;<div class="dots">${row(so.them,false)}</div>`}
 else{$('sbMain').innerHTML=`🧤 ${g.saves} &nbsp;|&nbsp; ⚽ ${g.goals}`;
 if(g.mode==='career'){const S=STAGES[g.stage];$('sbSub').textContent=`${Math.min(g.idx+1,S.shots)}/${S.shots} • المسموح: ${Math.max(0,S.allow-g.goals)}`}
-else if(g.mode==='survival')$('sbSub').textContent='❤️'.repeat(Math.max(0,g.lives))+'🖤'.repeat(3-Math.max(0,g.lives));else $('sbSub').textContent=DIFFN[save.diff]}
+else if(g.mode==='survival')$('sbSub').textContent='❤️'.repeat(Math.max(0,g.lives))+'🖤'.repeat(3-Math.max(0,g.lives));else $('sbSub').textContent=g.mode==='daily'?`${Math.min(g.idx+1,10)}/10`:g.mode==='tutorial'?`${g.tut+1}/${TUT.length}`:DIFFN[save.diff]}
 $('pts').innerHTML=`النقاط <b>${g.pts}</b>`;const mult=1+Math.min(Math.max(g.streak-1,0),8)*.25;$('combo').textContent=`🔥 ${g.streak} متتالية • ×${mult}`;$('combo').classList.toggle('on',g.streak>=2);
 $('rate').textContent=`⭐ ${g.rt.toFixed(1)}`;if(g.mode==='survival')$('lvl').textContent=`📈 المستوى ${Math.round((g.s-DIFF[save.diff])/.07)+1}`;
 document.querySelectorAll('#focus .seg b').forEach((b,i)=>b.style.width=cl(focus.ch-i,0,1)*100+'%');
@@ -930,10 +1002,10 @@ let pausedAt=0;
 function togglePause(force){if(st==='menu'||st==='over')return;paused=force===true?true:!paused;if(paused)pausedAt=performance.now();
 if(paused){releaseLock();showScreen('pause');grip=false;if(AC&&CG)CG.gain.setTargetAtTime(.04,AC.currentTime,.1)}else{showScreen(null);grab();last=performance.now();if(AC&&CG)CG.gain.setTargetAtTime(CROWD0,AC.currentTime,.2)}}
 function placeMenu(){cur=null;GM=null;lock=null;st='menu';SH.g.position.set(1.2,.97,-12.4);face(SH,-.1,1);idlePose(SH,0);CR.g.position.y=-50;CR.g.visible=false;WL.forEach(h=>{h.g.position.y=-50;h.g.visible=false;h.cols.forEach(c=>c.off=true)});
-REF.g.position.set(-7,.97,-13);face(REF,1,.3);idlePose(REF,0);ball.p.set(0,R,-11);ball.v.set(0,0,0);ball.held=false;resetKeeper();trajLine.visible=false;drawScr()}
+REF.g.position.set(-7,.97,-13);face(REF,1,.3);idlePose(REF,0);ball.p.set(0,R,-11);ball.v.set(0,0,0);ball.held=false;resetKeeper();trajLine.visible=false;hideExtras();applyWeather(false);$('tutBox').classList.add('hide');drawScr()}
 function goMenu(){paused=false;releaseLock();placeMenu();$('hud').classList.add('hide');$('rec').style.display='none';$('lbT').classList.remove('on');$('lbB').classList.remove('on');$('vig').style.opacity=0;focus.act=0;
 hideBanner();shotInfo('');showScreen('menu');updBests()}
-function updBests(){const b=save.best,stars=save.career.reduce((a,c)=>a+c,0);$('bests').innerHTML=`🏆 نجوم المسيرة: ${stars}/15 &nbsp;•&nbsp; ❤️ أفضل بقاء: ${b.survival} &nbsp;•&nbsp; 🎯 انتصارات الترجيح: ${save.wins}`}
+function updBests(){const b=save.best,stars=save.career.reduce((a,c)=>a+c,0);$('bests').innerHTML=`🏆 نجوم المسيرة: ${stars}/15 &nbsp;•&nbsp; ❤️ أفضل بقاء: ${b.survival} &nbsp;•&nbsp; 🎯 انتصارات الترجيح: ${save.wins}`;updProf()}
 function buildStages(){const el=$('stages');el.innerHTML='';STAGES.forEach((S,i)=>{const lk=i>0&&!save.career[i-1],T=TEAMS[i],b=document.createElement('button');b.className='stage'+(lk?' lock':'');
 b.innerHTML=`<span class="ic">${lk?'🔒':S.ic}</span><div><h4>${i+1}. ${S.n}</h4><p><span class="kit" style="background:${hexc(T.shirt)}"></span>ضد ${T.n} • ${S.shots} فرص • لا تستقبل أكثر من ${S.allow} أهداف</p></div><span class="st">${'★'.repeat(save.career[i])}${'☆'.repeat(3-save.career[i])}</span>`;
 if(!lk)b.onclick=()=>{sfx('click');newGame('career',{stage:i})};el.appendChild(b)})}
@@ -943,8 +1015,9 @@ if(g.mode==='career'){const S=STAGES[g.stage],pass=g.goals<=S.allow&&g.idx>=S.sh
 if(pass){save.career[g.stage]=Math.max(save.career[g.stage],stars);next=g.stage<4;title=g.stage===4?'🏆 بطل العالم!':'✅ تأهلت!';msg=next?`فتحت بطولة: ${STAGES[g.stage+1].n}`:'أنت أسطورة حراسة المرمى!'}
 else{title='❌ خرجت من البطولة';msg=`استقبلت ${g.goals} أهداف والمسموح ${S.allow} فقط`}save.best.career=Math.max(save.best.career,g.pts)}
 else if(g.mode==='survival'){title='💔 انتهت الأرواح';stars=g.saves>=25?3:g.saves>=12?2:g.saves>=5?1:0;msg=g.pts>save.best.survival?'🎉 رقم قياسي جديد!':`أفضل رقم لك: ${save.best.survival} نقطة`;save.best.survival=Math.max(save.best.survival,g.pts)}
+else if(g.mode==='daily'){const td=today(),dl=save.daily;if(dl.d!==td){dl.d=td;dl.best=0}const nb=g.pts>dl.best;dl.best=Math.max(dl.best,g.pts);dl.done=true;title='📅 انتهى تحدي اليوم';stars=g.saves>=8?3:g.saves>=6?2:g.saves>=4?1:0;msg=nb?'🎉 أفضل نتيجة لك اليوم!':`أفضل نتيجة اليوم: ${dl.best} نقطة`}
 else{const win=d==='us',a=g.so.them.filter(Boolean).length,b=g.so.us.filter(Boolean).length;if(win)save.wins++;title=win?'🏆 فزت بركلات الترجيح!':'😞 خسرت ركلات الترجيح';stars=win?(g.goals<=1?3:g.goals<=3?2:1):0;msg=`النتيجة: فريقك ${b} – ${a} ${g.team.n}`}
-persist();if(stars>=2){emitConfetti(new V(0,3,-3),200);roar(.9);crowdCheer(1)}
+grantRewards(g,stars);persist();if(stars>=2){emitConfetti(new V(0,3,-3),200);roar(.9);crowdCheer(1)}
 $('resT').textContent=title;$('resMsg').textContent=msg;$('resStars').innerHTML=[0,1,2].map(i=>`<span class="${i<stars?'':'off'}">⭐</span>`).join('');
 $('resStats').innerHTML=[['🧤 تصديات',g.saves],['✊ إمساكات',g.catches],['⚽ أهداف',g.goals],['📊 نسبة التصدي',pct+'%'],['🔥 أطول سلسلة',g.bestStreak],['⚡ أسرع كرة',Math.round(g.maxKmh)+' كم/س'],['💯 النقاط',g.pts],['🖐️ تصديات خارقة',g.perfect],['⭐ التقييم',g.rt.toFixed(1)]].map(([a,b])=>`<div><b>${b}</b>${a}</div>`).join('');
 $('bNext').style.display=next?'':'none';setTimeout(()=>{if(st==='over'){$('hud').classList.add('hide');showScreen('result')}},1500)}
@@ -973,9 +1046,10 @@ updFocus(rdt);const dt=rdt*tScale;
 syncAim();
 if(st==='intro'||st==='run'||st==='fly'||st==='ourkick'){updKeeper(rdt*Math.max(tScale,.55));updCols(dt)}
 else if(st==='menu'){poseKeeper();updCols(rdt)}
-if(st==='intro'){rt+=rdt;poseActors(rt,cur);if(rt>=0){st='run';sfx('whistle');hideBanner()}}
+if(st==='intro'){if(!introHold())rt+=rdt;poseActors(rt,cur);if(rt>=0){st='run';sfx('whistle');hideBanner()}}
 else if(st==='run'){rt+=dt;poseActors(rt,cur);if(rt>=cur.runT)kick()}
 if(st==='fly'){rt+=dt;fT+=dt;if(cur.cross&&!cur.headed&&rt>=cur.runT+cur.cross.T)header();
+if(cur.reb&&!cur.reb.kicked&&!lock&&rt>=cur.reb.rt0+cur.reb.tR)rebKick();
 stepBall(dt);poseActors(rt,cur);if(lock&&fT-lockT>1.9)afterShot()}
 else if(st==='ourkick')ourKick(rdt);
 else if(st==='replay')updReplay(rdt);
@@ -985,12 +1059,158 @@ bm.position.copy(ball.p);
 if(st!=='replay'&&!ball.held){const wl=ball.w.length();if(wl>1e-3)bm.quaternion.premultiply(_q1.setFromAxisAngle(_a.copy(ball.w).normalize(),wl*dt))}
 blob.position.set(ball.p.x,.012,ball.p.z);const bh=cl(1-ball.p.y/4,0,1);blob.scale.setScalar(.6+(1-bh)*1.4);blob.material.opacity=.55*bh;
 updTrail((st==='fly'&&!lock)||st==='replay',rdt);updNets(st==='replay'?rdt*.42:dt);updParts(st==='replay'?rdt*.42:dt);
-updCam(rdt,now);cam.updateMatrixWorld();fadeFrame(rdt);atmos(rdt,now);speedHud();
+updCam(rdt,now);cam.updateMatrixWorld();fadeFrame(rdt);atmos(rdt,now);speedHud();updRain(rdt);crowdRhythm(rdt);
 if(st==='fly'&&!lock)tScaleHud()}
 function tScaleHud(){if(focus.act>0)document.querySelectorAll('#focus .seg b').forEach((b,i)=>b.style.width=cl(focus.ch-i,0,1)*100+'%')}
+/* ======================================================================
+   القسم 6: المسدد الذكي، المتابعات، المدافعون، التقدم، المتجر، الإنجازات، التعليم، تحدي اليوم
+   ====================================================================== */
+var FIELD_M;
+const NAMES=['ياسين حداد','عمر السالم','كريم ناصر','مالك الأحمد','زياد فارس','نادر يوسف','سامي خليل','رامي عادل','طارق منصور','فيصل جابر','هشام بدر','وليد صبري','أنس قاسم','بلال عيسى','مروان شاكر','حمزة سليم'];
+/* المسدد يقرأ الحارس: إن ارتميت مبكراً نحو جهة التسديد يغيّر الزاوية للجهة الأخرى */
+function smartRead(){const c=cur;if(!c.smart)return;const hx=hand.x;
+if(Math.abs(hx)<1.05)return;if(Math.sign(hx)!==Math.sign(c.tg.x)&&Math.abs(c.tg.x)>.7)return;
+c.tg.x=-Math.sign(hx)*rnd(1.9,3.2);if(c.tg.y>2.15)c.tg.y=rnd(.3,1.8);
+c.v=c.gr?solveG(c.p0,c.tg.x,c.spd):solve(c.p0,c.tg,c.T,c.w);c.read=true;popCenter('👀 المسدد قرأ تحركك المبكر!','#ffb84d')}
+/* ===== مدافعون (يحوّلون الكرة) ومهاجمون (يتابعون) ===== */
+const SKINS=[0xf1c9a5,0xd9a679,0xb07a4f,0x7a4e2d],HAIRS=[0x111111,0x3b2414,0x6b3e1c];
+const DF=[0,1].map(i=>{const h=human({shirt:OUR.shirt,shorts:OUR.shorts,socks:OUR.socks,skin:pick(SKINS),hair:pick(HAIRS),num:String([3,2][i]),numCol:'#fff'});h.g.position.y=-50;h.g.visible=false;const n0=cols.length;addBodyCols(h,{w:1,df:1,off:true});h.cols=cols.slice(n0);return h});
+const AT=[0,1].map(i=>{const h=human({shirt:0xd8232a,shorts:0xffffff,socks:0xd8232a,skin:pick(SKINS),hair:pick(HAIRS),num:String([10,11][i]),numCol:'#fff'});h.g.position.y=-50;h.g.visible=false;return h});
+function hideExtras(){DF.concat(AT).forEach(h=>{h.g.visible=false;h.g.position.y=-50});DF.forEach(h=>h.cols.forEach(c=>c.off=true))}
+function lineDist(q,p,c){const ab=new V(c.tg.x-p.x,0,-p.z),ap=new V(q.x-p.x,0,q.z-p.z),t=cl(ap.dot(ab)/ab.lengthSq(),0,1);return ap.sub(ab.multiplyScalar(t)).length()}
+function placeExtras(c){hideExtras();c.df=[];c.at=[];AT.forEach(h=>setKit(h,GM?GM.team:TEAMS[1]));
+if(c.kind==='pen'||c.wall||(GM&&GM.mode==='tutorial'))return;
+const p=c.p0,d=c.d,pe=new V(-d.z,0,d.x),dist=Math.hypot(p.x,p.z);
+const nD=c.cross?1:c.kind==='one'?(Math.random()<.45?1:0):Math.random()<.75?(Math.random()<.4?2:1):0;
+for(let i=0;i<nD;i++){let pos;
+if(c.cross)pos=c.head.clone().addScaledVector(pe,sgn()*rnd(.9,1.8)).addScaledVector(d,rnd(.4,1.2));
+else pos=p.clone().addScaledVector(d,rnd(4.5,Math.max(5,Math.min(9,dist-3)))).addScaledVector(pe,sgn()*rnd(.4,2.4));
+pos.y=.97;const sd=Math.sign(pos.clone().sub(p).dot(pe))||1,lunge=c.cross?new V():pe.clone().multiplyScalar(-sd);
+c.df.push({p:pos,lunge,f:p.clone().sub(pos).setY(0).normalize(),side:-sd});DF[i].g.visible=true;DF[i].cols.forEach(cc=>{cc.off=false;cc.init=false})}
+const nA=c.kind==='long'||c.kind==='box'?2:1;
+for(let i=0;i<nA;i++){let pos,tries=0;do{pos=new V(rnd(-9,9),.97,rnd(-15,-8.5));tries++}while(tries<25&&(lineDist(pos,p,c)<2.6||pos.distanceTo(p)<3||(c.cross&&pos.distanceTo(c.head)<2.5)));
+c.at.push({p:pos,dir:new V(-pos.x*.4,0,-pos.z).normalize()});AT[i].g.visible=true}}
+function poseExtras(rt,c,ft){
+if(c.df)c.df.forEach((o,i)=>{const h=DF[i],l=ft>0?cl(ft/.28,0,1):0;h.g.position.copy(o.p).addScaledVector(o.lunge,l*.42);h.g.position.y=.97-l*.12;face(h,o.f.x,o.f.z);
+if(l>0){setLeg(h.lA,-.25*l,.5*l,(o.side>0?.75:-.1)*l);setLeg(h.lB,-.25*l,.5*l,(o.side>0?.1:-.75)*l);setArmRot(h.aA,.35,.5,-.4);setArmRot(h.aB,.35,-.5,-.4);h.torso.rotation.x=.2*l}else idlePose(h,rt+i)});
+if(c.at)c.at.forEach((o,i)=>{const h=AT[i];if(c.reb&&c.reb.h===h&&rt>=c.reb.rt0)return;const m=ft>0?Math.min(ft*2.8,4.5):0;h.g.position.copy(o.p).addScaledVector(o.dir,m);h.g.position.y=.97;face(h,o.dir.x,o.dir.z);if(ft>0&&m<4.5)runPose(h,rt*10,.85);else idlePose(h,rt+i*.7)});
+if(c.reb&&rt>=c.reb.rt0)poseReb(rt,c)}
+/* ===== المتابعة: إبعاد ضعيف أمام المرمى = تسديدة ثانية ===== */
+function rebCheck(){if(!GM||GM.mode==='shootout'||GM.mode==='tutorial'||kHold||cur.rebTried||fT-touchT<.3)return false;
+const b=ball.p,sp=ball.v.length();if(b.z>-2.3||b.z<-13||Math.abs(b.x)>10||b.y>1.3||sp>10||ball.v.z>1.5)return false;
+cur.rebTried=true;if(Math.random()>.45+.4*GM.s)return false;
+let h=SH,best=SH.g.position.distanceTo(b);(cur.at||[]).forEach((o,i)=>{const dd=AT[i].g.position.distanceTo(b);if(dd<best){best=dd;h=AT[i]}});
+if(best>16)return false;const tR=cl(best/7.5,.45,1.1),pb={p:b.clone(),v:ball.v.clone(),w:ball.w.clone(),kn:0};for(let t=0;t<tR;t+=1/120)integ(pb,1/120);
+const from=h.g.position.clone().setY(.97),dir=pb.p.clone().sub(from).setY(0),L=dir.length();dir.normalize();const to=from.clone().addScaledVector(dir,Math.max(0,L-.45));to.y=.97;
+cur.reb={h,rt0:rt,tR,from,to,dir,kicked:false};popCenter('⚠️ متابعة!','#ff5a4d');roar(.35,1.5);return true}
+function poseReb(rt,c){const r=c.reb,h=r.h,u=(rt-r.rt0)/r.tR;
+if(u<1){h.g.position.lerpVectors(r.from,r.to,u);h.g.position.y=.95+Math.abs(Math.sin(rt*12))*.06;face(h,r.dir.x,r.dir.z);runPose(h,rt*12);return}
+const t=rt-r.rt0-r.tR,k=cl(t/.12,0,1),react=c.lockAt!=null&&rt>c.lockAt+.5;h.g.position.copy(r.to);h.g.position.y=.97;face(h,-r.to.x,-r.to.z);
+if(react)reactPose(h,{lock:c.lock,celebFrom:r.to,celebDir:c.celebDir},rt-c.lockAt-.5);else{setLeg(h.lB,lerp(1,-1.3,k),lerp(1.4,.2,k));setLeg(h.lA,-.2,.25);h.torso.rotation.x=-.1*k}}
+function rebKick(){const r=cur.reb;_a.copy(r.to).setY(ball.p.y);
+if(ball.p.distanceTo(_a)>2.3||ball.p.y>1.5||ball.p.z>-1.5){cur.reb=null;finish('s');return}
+r.kicked=true;const side=Math.abs(kp.x)>.4?-Math.sign(kp.x):sgn(),tg=new V(side*rnd(1.4,3.2),rnd(.2,1.5),0),spd=rnd(17,23)*(.85+.3*GM.s),T=Math.hypot(tg.x-ball.p.x,ball.p.z)/spd;
+ball.v.copy(solve(ball.p.clone(),tg,T,new V()));ball.w.set(0,0,0);ball.kn=0;touched=touchHand=hitPost=blocked=fingertip=false;fT=0;cur.tg=tg;
+sfx('kick',1);emitGrass(ball.p,10,ball.v.clone().normalize().multiplyScalar(.4));computeDanger()}
+/* ===== المستويات والعملات ===== */
+const RANKS=['حارس ناشئ','حارس واعد','حارس محترف','نجم الدوري','حارس دولي','أسطورة حية'];
+const xpNeed=n=>150*n+40*n*n;
+function lvlInfo(){let x=save.xp,n=1;while(x>=xpNeed(n)){x-=xpNeed(n);n++}return{n,cur:x,need:xpNeed(n),rank:RANKS[Math.min(RANKS.length-1,Math.floor((n-1)/4))]}}
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+function daySeed(){let h=2166136261;for(const ch of 'gk'+today()){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function updProf(){const L=lvlInfo();$('prof').innerHTML=`<div class="lv">${L.n}</div><div><div>${L.rank} <span class="coin">• 🪙 ${save.coins}</span></div><div class="xp"><b style="width:${L.cur/L.need*100}%"></b></div><small>${L.cur} / ${L.need} XP</small></div>`;
+const dl=save.daily;$('dailyP').textContent=dl.d===today()?`أفضل نتيجة اليوم: ${dl.best} نقطة. حاول التفوق عليها!`:'10 تسديدات صعبة ثابتة لهذا اليوم. حطّم رقمك القياسي.';
+$('bTut').innerHTML='🎓 الدرس التعليمي'+(save.tut?'':'<span class="badge">جديد</span>')}
+function toast(t,s){const d=document.createElement('div');d.className='toast';d.innerHTML=t+(s?`<small>${s}</small>`:'');$('toasts').appendChild(d);setTimeout(()=>d.remove(),4200)}
+function grantRewards(g,stars){const coins=Math.round(g.pts/45+stars*40+g.saves*4),xp=Math.round(g.pts/8+g.saves*10),L0=lvlInfo().n;
+save.coins+=coins;save.xp+=xp;save.st.games++;const L1=lvlInfo().n;endAch(g,stars);
+$('rewards').innerHTML=`<span class="coin">+${coins} 🪙</span> &nbsp; <span style="color:#7fd4ff">+${xp} XP</span>`+(L1>L0?`<br>🎉 وصلت للمستوى ${L1} — ${lvlInfo().rank}`:'');
+if(L1>L0){setTimeout(()=>toast(`⬆️ المستوى ${L1}`,lvlInfo().rank),1600);if(L1>=10)ach('level10')}}
+/* ===== الإنجازات ===== */
+const ACH=[['first_save','🧤','أول تصدٍّ','تصدَّ لأول تسديدة',50],['first_catch','✊','يدان من حديد','أمسك الكرة لأول مرة',80],['pen_save','🎯','صائد الجزاء','تصدَّ لضربة جزاء',100],['head_save','✈️','سيد الهواء','تصدَّ لرأسية',100],
+['fk_save','🧱','خلف الحائط','تصدَّ لضربة حرة مباشرة',100],['knuckle','🌀','ترويض المتموجة','تصدَّ لكرة متموجة',150],['fast','⚡','ردة فعل خارقة','تصدَّ لكرة أسرع من 110 كم/س',200],['streak5','🔥','الجدار','5 تصديات متتالية',150],
+['streak10','🏰','الجدار العظيم','10 تصديات متتالية',300],['double','🧤','تصدٍّ مزدوج','تصدَّ لكرة المتابعة بعد إبعادك الأول',200],['fingertip','🖐️','بأطراف الأصابع','حوّل كرة بأطراف أصابعك',120],['patient','👀','لا تخدعني','تصدَّ لجزاء بركض متقطع',150],
+['rain','🌧️','ملك المطر','5 تصديات في مباراة ممطرة',150],['clean','🧼','شباك نظيفة','أنهِ بطولة دون استقبال أهداف',300],['champion','🏆','بطل العالم','اربح نهائي كأس العالم',1000],['so_win','🥅','بطل الترجيح','اربح ركلات الترجيح',200],
+['survive25','❤️','لا يُقهر','25 تصدياً في وضع البقاء',300],['daily','📅','تحدي اليوم','أكمل تحدي اليوم',150],['level10','🌍','حارس دولي','صل للمستوى 10',500],['tutor','🎓','تخرّجت!','أكمل الدرس التعليمي',100]];
+function ach(id){if(save.ach[id])return;const a=ACH.find(x=>x[0]===id);if(!a)return;save.ach[id]=1;save.coins+=a[4];persist();toast(`🏅 ${a[1]} ${a[2]}`,`${a[3]} • +${a[4]} 🪙`);sfx('coin')}
+function onResult(r,o){const g=GM;if(!g)return;g.lastC=!!o.isC;
+if(r==='s'){save.st.saves++;if(o.isC)save.st.catches++;ach('first_save');if(o.isC)ach('first_catch');
+if(g.mode!=='tutorial'){if(cur.kind==='pen'){ach('pen_save');if(cur.stut)ach('patient')}if(cur.kind==='head')ach('head_save');if(cur.kind==='fk')ach('fk_save');if(cur.kn)ach('knuckle');
+if((cur.kmh||0)>110)ach('fast');if(g.streak>=5)ach('streak5');if(g.streak>=10)ach('streak10');if(o.dbl)ach('double');if(fingertip)ach('fingertip');if(g.rain&&g.saves>=5)ach('rain');if(g.mode==='survival'&&g.saves>=25)ach('survive25')}}
+say(r,o);persist()}
+function endAch(g,stars){if(g.mode==='career'&&stars>0){if(g.goals===0)ach('clean');if(g.stage===4)ach('champion')}if(g.mode==='shootout'&&stars>0)ach('so_win');if(g.mode==='daily')ach('daily')}
+function buildAch(){const n=ACH.filter(a=>save.ach[a[0]]).length;$('achSum').textContent=`${n} / ${ACH.length} إنجازاً مكتملاً`;
+$('achGrid').innerHTML=ACH.map(([id,ic,t,d,r])=>`<div class="ach ${save.ach[id]?'got':''}"><b>${ic} ${t}</b>${d}<div class="r">${save.ach[id]?'✓ مكتمل':'+'+r+' 🪙'}</div></div>`).join('')}
+/* ===== المتجر: تطوير الحارس + القفازات + الأطقم ===== */
+const UPG=[['ref','⚡','ردة الفعل','سرعة اليدين وانطلاق الجسم في الارتماء'],['reach','📏','مدى الارتماء','ارتماء أبعد وقفازات أعرض'],['hand','✊','الإمساك','إمساك كرات أقوى دون أن تفلت'],['foc','⏱','التركيز','إبطاء أطول وأعمق للزمن']];
+const UPC=[150,300,550,900,1400];
+const GLOVES=[['lime',0x9cff3b,0,'ليموني'],['red',0xe63946,300,'أحمر'],['blue',0x2f7bff,300,'أزرق'],['black',0x1a1a1a,450,'أسود'],['pink',0xff5fa2,450,'وردي'],['cyan',0x22e0e0,500,'سماوي'],['gold',0xffc832,700,'ذهبي'],['fire',0xff6a00,800,'ناري']];
+const KITS=[['yellow',0xf7c948,0,'أصفر'],['black',0x202020,400,'أسود'],['purple',0x7b2ff7,400,'بنفسجي'],['green',0x1db954,400,'أخضر'],['red',0xd62828,500,'أحمر'],['sky',0x4cc9f0,500,'سماوي'],['pink',0xff70a6,600,'وردي'],['white',0xf2f2f2,700,'أبيض']];
+let shopTab='up';
+function applyUpgrades(){const u=save.up;Object.assign(KS,{k:.88+.07*u.ref,vmax:10+.5*u.ref,hs:26+2*u.ref,xf:.7+.02*u.reach,cr:.11+.006*u.reach,catchB:1.2*u.hand-1,fdur:1.4+.22*u.foc,fsl:.38-.025*u.foc});HANDS.forEach(h=>h.r=KS.cr)}
+function applyLook(){const g=GLOVES.find(x=>x[0]===save.glove)||GLOVES[0],k=KITS.find(x=>x[0]===save.kit)||KITS[0];K.mats.gl.color.copy(C(g[1]));K.mats.sh.color.copy(C(k[1]));K.mats.so.color.copy(C(k[1]));ring.style.setProperty('--lime',hexc(g[1]))}
+function buildShop(){$('shopCoins').textContent=`🪙 ${save.coins}`;const B=$('shopBody');$('shopTabs').querySelectorAll('.chip').forEach(b=>b.classList.toggle('on',b.dataset.v===shopTab));
+if(shopTab==='up')B.innerHTML=UPG.map(([k,ic,t,d])=>{const l=save.up[k],c=UPC[l];return`<div class="up"><span class="ic">${ic}</span><div><h4>${t}</h4><p>${d}</p><div class="pips">${[0,1,2,3,4].map(i=>`<i class="${i<l?'on':''}"></i>`).join('')}</div></div><button class="ghost" data-up="${k}" ${l>=5||save.coins<c?'disabled':''}>${l>=5?'الحد الأقصى':`ترقية • 🪙 ${c}`}</button></div>`}).join('');
+else{const L=shopTab==='gl'?GLOVES:KITS,own=save.own[shopTab],eq=shopTab==='gl'?save.glove:save.kit;
+B.innerHTML=`<div class="swg">${L.map(([id,col,pr,n])=>{const o=own.includes(id);return`<button class="sw ${eq===id?'eq':''} ${o?'':'lockd'}" data-it="${id}"><span class="c" style="background:${hexc(col)}"></span>${n}<small>${eq===id?'✓ مُجهّز':o?'تجهيز':`🪙 ${pr}`}</small></button>`}).join('')}</div>`}
+B.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{const k=b.dataset.up,l=save.up[k];if(l>=5||save.coins<UPC[l])return;save.coins-=UPC[l];save.up[k]++;persist();applyUpgrades();sfx('coin');buildShop();updProf()});
+B.querySelectorAll('[data-it]').forEach(b=>b.onclick=()=>{const id=b.dataset.it,L=shopTab==='gl'?GLOVES:KITS,it=L.find(x=>x[0]===id),own=save.own[shopTab];
+if(!own.includes(id)){if(save.coins<it[2]){sfx('click');b.animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'none'}],{duration:220});return}save.coins-=it[2];own.push(id);sfx('coin')}else sfx('click');
+if(shopTab==='gl')save.glove=id;else save.kit=id;persist();applyLook();buildShop();updProf()})}
+$('shopTabs').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{shopTab=b.dataset.v;sfx('click');buildShop()});
+$('bShop').onclick=()=>{sndStart();sfx('click');backTo='menu';buildShop();showScreen('shop')};
+$('bAch').onclick=()=>{sfx('click');backTo='menu';buildAch();showScreen('ach')};
+$('bTut').onclick=()=>{sndStart();sfx('click');newGame('tutorial')};
+chips('sWx','weather');
+{const b=$('sVoice');b.classList.toggle('on',!!save.voice);b.onclick=()=>{save.voice=!save.voice;b.classList.toggle('on',save.voice);persist();sfx('click');if(save.voice)say('s',{})}}
+/* ===== الدرس التعليمي ===== */
+const TUT=[{kind:'pen',txt:'حرّك الماوس: يدا الحارس تتبعان الحلقة الخضراء. حرّكها في كل الاتجاهات ثم تصدَّ للتسديدة.',tg:[1.7,1.1],spd:15,need:'save',hold:'move'},
+{kind:'pen',txt:'ضع الحلقة في طريق الكرة قبل وصولها لتصدّها.',tg:[-2.4,.6],spd:17,need:'save'},
+{kind:'box',txt:'اضغط مع الاستمرار على الزر الأيسر لحظة وصول الكرة لإمساكها ✊',tg:[-.9,1.3],spd:16,need:'catch'},
+{kind:'box',txt:'قذيفة سريعة! اضغط Space (أو الزر الأيمن) لحظة انطلاقها لإبطاء الزمن ⏱',tg:[2.9,1.9],spd:29,need:'focus'},
+{kind:'pen',txt:'لا ترتمِ قبل التسديدة! المسدد يقرأ تحركك المبكر ويغيّر الزاوية 👀 انتظر ثم تصدَّ.',tg:[2.2,.5],spd:20,need:'save',smart:1}];
+const _lastAim=new V();
+function tutShape(c){const S=TUT[GM.tut];if(c.kind==='box'){c.p0.set(rnd(-4,4),R,-17);c.d=new V(-c.p0.x,0,-c.p0.z).normalize()}
+c.tg.set(S.tg[0],S.tg[1],0);c.spd=S.spd;c.w.set(0,0,0);c.kn=0;c.gr=0;c.stut=0;c.cue=0;c.smart=!!S.smart;c.sty=S.need==='catch'?'تسديدة متوسطة':S.need==='focus'?'قذيفة صاروخية':'تسديدة تعليمية';
+c.T=Math.hypot(c.tg.x-c.p0.x,c.p0.z)/c.spd;c.v=solve(c.p0,c.tg,c.T,c.w);if(S.need==='focus')focus.ch=Math.max(focus.ch,1)}
+function tutShow(){$('tutBox').innerHTML=`<small>الدرس ${GM.tut+1} من ${TUT.length}</small>${TUT[GM.tut].txt}`;_lastAim.copy(aim);GM.mv=0}
+function introHold(){if(!GM||GM.mode!=='tutorial'||TUT[GM.tut].hold!=='move'||GM.moved)return false;GM.mv+=aim.distanceTo(_lastAim);_lastAim.copy(aim);
+if(GM.mv>7){GM.moved=true;popCenter('👍 ممتاز!','#9cff3b');return false}return rt>-.6}
+function tutNext(){const S=TUT[GM.tut],ok=S.need==='catch'?lock==='s'&&GM.lastC:S.need==='focus'?lock==='s'&&GM.usedFocus:lock==='s';GM.usedFocus=false;
+if(ok){GM.tut++;sfx('coin');if(GM.tut>=TUT.length){tutDone();return}popCenter('✅ أحسنت!','#9cff3b')}
+else popCenter(S.need==='catch'&&lock==='s'?'أبعدتها! اضغط مع الاستمرار للإمساك':S.need==='focus'&&lock==='s'?'تصدٍّ جيد، لكن استخدم وضع التركيز':'حاول مرة أخرى','#ffb84d');
+setupChance()}
+function tutDone(){const first=!save.tut;save.tut=true;if(first)save.coins+=200;ach('tutor');persist();st='over';sfx('whistleEnd');releaseLock();hideRing();$('tutBox').classList.add('hide');
+$('resT').textContent='🎓 أنهيت الدرس التعليمي!';$('resMsg').textContent='أنت جاهز الآن للمسيرة الاحترافية';$('resStars').innerHTML='⭐⭐⭐';$('resStats').innerHTML='';$('rewards').innerHTML=first?'<span class="coin">+200 🪙</span>':'';$('bNext').style.display='none';
+roar(.8);crowdCheer(1);emitConfetti(new V(0,3,-3),200);setTimeout(()=>{if(st==='over'){$('hud').classList.add('hide');showScreen('result')}},1200)}
+/* ===== الطقس: مطر يجعل الكرة تنزلق وأصعب في الإمساك ===== */
+const RN=2600,rnP=new Float32Array(RN*6),rnG=new THREE.BufferGeometry();rnG.setAttribute('position',new THREE.BufferAttribute(rnP,3).setUsage(THREE.DynamicDrawUsage));
+const rainL=new THREE.LineSegments(rnG,new THREE.LineBasicMaterial({color:0xaabbdd,transparent:true,opacity:.35,depthWrite:false}));rainL.frustumCulled=false;rainL.visible=false;scene.add(rainL);
+const rnS=[];for(let i=0;i<RN;i++)rnS.push(new V(rnd(-16,16),rnd(0,14),rnd(-26,6)));
+let rainSnd=null;
+function applyWeather(on){RAIN.on=on;rainL.visible=on;applyTOD(save.tod);
+if(on){scene.fog.near*=.45;scene.fog.far*=.5;sun.intensity*=.7;hemi.intensity*=.85;rend.toneMappingExposure*=.92;ENV.cloudM.opacity=Math.min(1,ENV.cloudM.opacity+.3)}
+if(FIELD_M)FIELD_M.roughness=on?.55:.95;if(!on&&rainSnd){try{rainSnd.stop()}catch(_){}rainSnd=null}}
+function updRain(dt){if(!RAIN.on)return;
+if(AC&&!rainSnd){const s=AC.createBufferSource();s.buffer=NBw;s.loop=true;const f=AC.createBiquadFilter();f.type='highpass';f.frequency.value=1800;const g=AC.createGain();g.gain.value=.06;s.connect(f);f.connect(g);g.connect(LPf);s.start();rainSnd=s}
+const cx=cam.position.x,cz=cam.position.z;for(let i=0;i<RN;i++){const s=rnS[i];s.y-=15*dt;s.x+=1.5*dt;if(s.y<0){s.y+=14;s.x=cx+rnd(-16,16);s.z=cz+rnd(-26,4)}
+const k=i*6;rnP[k]=s.x;rnP[k+1]=s.y;rnP[k+2]=s.z;rnP[k+3]=s.x-.03;rnP[k+4]=s.y+.32;rnP[k+5]=s.z}rnG.attributes.position.needsUpdate=true}
+/* ===== المعلّق الصوتي (إن توفر صوت عربي في الجهاز) ===== */
+let VOICE=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices();VOICE=vs.find(v=>/^ar/i.test(v.lang))||null}catch(_){}$('voiceNote').textContent=VOICE?'':'(لا يوجد صوت عربي مثبت في جهازك)'}
+if(window.speechSynthesis){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}else $('voiceNote').textContent='(غير مدعوم في المتصفح)';
+const VL={s:['يا لها من تصدٍّ!','الحارس يقول لا!','تصدٍّ رائع!','أنقذ مرماه ببراعة!'],c:['يمسكها بثبات!','بين يديه بأمان!'],d:['تصدٍّ مزدوج! مذهل!','مرتين! لا يُصدق!'],g:['هدف!','الكرة في الشباك!','لا حول للحارس فيها!'],post:['القائم ينقذ!','ارتطمت بالقائم!'],wall:['الدفاع يصد!'],wide:['بعيدة عن المرمى']};
+function say(r,o={}){if(!save.voice||!VOICE||!window.speechSynthesis)return;const L=VL[r==='s'?(o.dbl?'d':o.isC?'c':'s'):r];if(!L)return;
+try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(pick(L));u.voice=VOICE;u.lang=VOICE.lang;u.rate=1.08;u.pitch=1.05;u.volume=save.vol;speechSynthesis.speak(u)}catch(_){}}
+/* تصفيق إيقاعي من الجماهير قبل الجزاء والضربات الحرة */
+let clapT=0;
+function crowdRhythm(dt){if(!AC||!cur||!(st==='intro'||st==='run')||!(cur.kind==='pen'||cur.wall))return;clapT-=dt;if(clapT<=0){clapT=cur.kind==='pen'?.75:1.05;nz(.09,'bandpass',1150,.9,.28);nz(.05,'highpass',2600,.7,.16,.002,.012);tn(80,55,.12,.2)}}
 /* بدء التشغيل */
-applyQuality(save.q);applyTOD(save.tod);placeMenu();updBests();camP.set(14,4,4);
+applyUpgrades();applyLook();applyQuality(save.q);applyTOD(save.tod);placeMenu();updBests();camP.set(14,4,4);
 requestAnimationFrame(loop);
+function hideLoad(){const l=$('load');if(l&&!l.dataset.h){l.dataset.h=1;l.style.opacity=0;l.style.pointerEvents='none';setTimeout(()=>l.remove(),700)}}
+requestAnimationFrame(hideLoad);setTimeout(hideLoad,1200);
 </script>
 </body>
 </html>
